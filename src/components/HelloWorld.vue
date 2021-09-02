@@ -1,33 +1,27 @@
-<template>
-<div>
-<p>{{ msg }}</p>
-</div>
-</template>
+<template><div><p>{{ msg }}</p></div></template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-name: "Ping",
-data() {
-    return {
-msg: "",
-    };
-},
-methods: {
+  name: 'Ping',
+  data() {
+    return { msg: '' };
+  },
+  methods: {
     getMessage() {
-        axios
-        .get("/")
+      axios
+        .get('/')
         .then((res) => {
-            this.msg = res.data;
+          this.msg = res.data;
         })
         .catch((error) => {
-            console.error(error);
+          document.write(error);
         });
     },
-    },
-    created() {
+  },
+  created() {
     this.getMessage();
-    },
+  },
 };
 </script>
