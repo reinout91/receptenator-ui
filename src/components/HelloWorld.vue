@@ -1,16 +1,20 @@
-<template><div><p>{{ msg }}</p></div></template>
+<template>
+<div>
+  <p>{{ msg }}</p>
+</div></template>
 
-<script>
+<script lang="ts">
 import axios from 'axios';
 
 export default {
   name: 'Ping',
   data() {
-    return { msg: '' };
+    const result = { msg: '' };
+    return result;
   },
   methods: {
     getMessage() {
-      axios
+      return axios
         .get('/')
         .then((res) => {
           this.msg = res.data;
@@ -20,7 +24,7 @@ export default {
         });
     },
   },
-  created() {
+  mounted() {
     this.getMessage();
   },
 };
