@@ -1,6 +1,6 @@
 <template>
 <div id="example-1">
-  <button v-on:click="counter += 1">Receptenator generator</button>
+  <button v-on:click="count += 1">Receptenator generator</button>
 </div></template>
 
 <script>
