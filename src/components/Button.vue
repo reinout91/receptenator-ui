@@ -1,6 +1,6 @@
 <template>
 <div id="example-1">
-  <button v-on:click="count += 1">Receptenator generator</button>
+  <button @click="$emit('selected')">Receptenator generator</button>
 </div></template>
 
 <script>
@@ -13,7 +13,7 @@
 // import axios from 'axios';
 
 export default {
-  name: 'example-1',
+  name: 'B_Recepten',
   data() {
     return {
       count: 0,

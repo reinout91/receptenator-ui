@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <HelloWorld/>
-    <Button/>
-    <Recept/>
+    <Recept ref = "myRecept"/>
+    <Button @click="update"/>
   </div>
 </template>
 
@@ -15,9 +15,18 @@ import Recept from '@/components/Recept.vue';
 @Options({
   components: {
     HelloWorld,
-    Button,
     Recept,
+    Button,
+  },
+  methods: {
+    update() {
+      console.log('update blah');
+      this.$refs.myRecept.update_selected();
+    },
+
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+
+}
 </script>

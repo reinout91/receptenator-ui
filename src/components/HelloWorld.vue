@@ -1,13 +1,13 @@
 <template>
 <div>
-  <p>{{ msg }}</p>
+  <h1>{{ msg }}</h1>
 </div></template>
 
 <script>
 import axios from 'axios';
 
 export default {
-  name: 'Ping',
+  name: 'Titel',
   data() {
     const result = { msg: '' };
     return result;
