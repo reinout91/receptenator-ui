@@ -14,6 +14,7 @@ import axios from 'axios';
 
 export default {
   name: 'Recept',
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   data() {
     const result = { recepten: [{ naam: '' }], selected: 0 };
     return result;
@@ -24,16 +25,23 @@ export default {
         .get('/recepten')
         .then((res) => {
           this.recepten = res.data;
+          this.selected = this.randomize_recipe();
         })
         .catch((error) => {
           document.write(error);
         });
     },
-    update_selected() {
-      console.log('update activated');
-      this.selected += 1;
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    randomize_recipe() {
+      return Math.floor(Math.random() * this.recepten.length);
     },
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    update_selected() {
+      this.selected = this.randomize_recipe();
+    },
+
   },
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   mounted() {
     this.getMessage();
   },
