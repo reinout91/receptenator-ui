@@ -1,8 +1,8 @@
 <template>
   <div class="home">
+    <Button @click="update"/>
     <HelloWorld/>
     <Recept ref = "myRecept"/>
-    <Button @click="update"/>
   </div>
 </template>
 
@@ -20,7 +20,6 @@ import Recept from '@/components/Recept.vue';
   },
   methods: {
     update() {
-      console.log('update blah');
       this.$refs.myRecept.update_selected();
     },
 
