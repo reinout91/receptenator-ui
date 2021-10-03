@@ -6,12 +6,13 @@
         <p>{{ n.naam }}</p>
       </li>
     </ul>
+
     <p>Kooktijd: {{ recept.kooktijd }} minuten</p>
     <p>{{ recept.opmerkingen }}</p>
   </div>
 </template>
 
-<script lang='js'>
+<script lang='ts'>
 import axios from 'axios';
 
 export default {
@@ -23,6 +24,8 @@ export default {
         {
           id: 0,
           naam: 'patat',
+          opmerkingen: 'blah',
+          kooktijd: 10,
           ingredienten: [
             { id: 1, naam: 'aap' },
             { id: 2, naam: 'noot' },
@@ -37,13 +40,14 @@ export default {
         },
         {
           field: 'naam',
-          label: 'naam',
+          label: 'Naam',
         },
       ],
     };
     return result;
   },
   methods: {
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     getMessage() {
       return axios
         .get('/randomrecept')
@@ -55,9 +59,6 @@ export default {
         });
     },
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    update_selected() {
-      this.selected = this.getMessage();
-    },
 
   },
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
