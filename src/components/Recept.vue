@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h2>{{ recepten[selected].naam }}</h2>
+    <h2>{{ recept.naam }}</h2>
     <ul>
-      <li v-for='n in recepten[selected].ingredienten' :key='n'>
+      <li v-for='n in recept.ingredienten' :key='n'>
         <p>{{ n.naam }}</p>
       </li>
     </ul>
-    <p>Kooktijd: {{ recepten[selected].kooktijd }} minuten</p>
-    <p>{{ recepten[selected].opmerkingen }}</p>
+    <p>Kooktijd: {{ recept.kooktijd }} minuten</p>
+    <p>{{ recept.opmerkingen }}</p>
   </div>
 </template>
 
@@ -19,15 +19,15 @@ export default {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   data() {
     const result = {
-      recepten: [
+      recept:
         {
           id: 0,
           naam: 'patat',
-          ingredienten: [{ id: 1, naam: 'aap' },
+          ingredienten: [
+            { id: 1, naam: 'aap' },
             { id: 2, naam: 'noot' },
             { id: 3, naam: 'mies' }],
-        }],
-      selected: 0,
+        },
       columns: [
         {
           field: 'id',
@@ -46,22 +46,17 @@ export default {
   methods: {
     getMessage() {
       return axios
-        .get('/recepten')
+        .get('/randomrecept')
         .then((res) => {
-          this.recepten = res.data;
-          this.selected = this.randomize_recipe();
+          this.recept = res.data;
         })
         .catch((error) => {
           document.write(error);
         });
     },
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    randomize_recipe() {
-      return Math.floor(Math.random() * this.recepten.length);
-    },
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     update_selected() {
-      this.selected = this.randomize_recipe();
+      this.selected = this.getMessage();
     },
 
   },
