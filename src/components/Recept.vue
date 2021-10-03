@@ -2,7 +2,7 @@
   <div>
     <h2>{{ recepten[selected].naam }}</h2>
     <ul>
-      <li v-for="n in recepten[selected].ingredienten" :key="n">
+      <li v-for='n in recepten[selected].ingredienten' :key='n'>
         <p>{{ n.naam }}</p>
       </li>
     </ul>
@@ -11,30 +11,35 @@
   </div>
 </template>
 
-<script lang="js">
+<script lang='js'>
 import axios from 'axios';
 
 export default {
   name: 'Recept',
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   data() {
-    const result = { recepten: [
-      { id:0, naam: "patat",
-     ingredienten:[ {id: 1, naam:"aap"},
-     {id: 2, naam:"noot"},
-      {id:3, naam:"mies"}]
-        }], 
-    selected: 0,
-    columns: [
-      {field: 'id',
-      label: 'Id',
-      width: '20',
-      numeric: true},
-          {
-            field: 'naam',
-            label: 'naam'
-          },
-        ] 
+    const result = {
+      recepten: [
+        {
+          id: 0,
+          naam: 'patat',
+          ingredienten: [{ id: 1, naam: 'aap' },
+            { id: 2, naam: 'noot' },
+            { id: 3, naam: 'mies' }],
+        }],
+      selected: 0,
+      columns: [
+        {
+          field: 'id',
+          label: 'Id',
+          width: '20',
+          numeric: true,
+        },
+        {
+          field: 'naam',
+          label: 'naam',
+        },
+      ],
     };
     return result;
   },
@@ -68,7 +73,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang='scss'>
 p {
   color: grey;
 }

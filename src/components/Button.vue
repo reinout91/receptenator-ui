@@ -13,7 +13,7 @@
 // import axios from 'axios';
 
 export default {
-  name: "B_Recepten",
+  name: 'B_Recepten',
   data() {
     return {
       count: 0,
