@@ -26,7 +26,7 @@ export default {
         });
     },
   },
-  mounted() :void {
+  mounted() :Promise<void> {
     this.getMessage();
   },
 };

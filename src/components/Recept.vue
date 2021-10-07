@@ -33,13 +33,10 @@ export default {
   data() :Recept {
     const recept = {
       id: 0,
-      naam: 'patat',
-      opmerkingen: 'blah',
-      kooktijd: 10,
-      ingredienten: [
-        { id: 1, naam: 'aap' },
-        { id: 2, naam: 'noot' },
-        { id: 3, naam: 'mies' }],
+      naam: '',
+      opmerkingen: '',
+      kooktijd: 0,
+      ingredienten: [],
     };
     return recept;
   },
