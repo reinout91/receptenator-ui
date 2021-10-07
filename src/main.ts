@@ -10,7 +10,4 @@ import router from './router';
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'http://localhost:8000/';
 
-const app = createApp(App);
-app.use(router);
-app.use(Oruga);
-app.mount('#app');
+createApp(App).use(router).use(Oruga).mount('#app');

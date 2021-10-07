@@ -1,58 +1,59 @@
 <template>
   <div>
-    <h2>{{ recept.naam }}</h2>
+    <h2>{{ naam }}</h2>
     <ul>
-      <li v-for='n in recept.ingredienten' :key='n'>
+      <li v-for='n in ingredienten' :key='n'>
         <p>{{ n.naam }}</p>
       </li>
     </ul>
 
-    <p>Kooktijd: {{ recept.kooktijd }} minuten</p>
-    <p>{{ recept.opmerkingen }}</p>
+    <p>Kooktijd: {{ kooktijd }} minuten</p>
+    <p>{{ opmerkingen }}</p>
   </div>
 </template>
 
 <script lang='ts'>
 import axios from 'axios';
 
+declare interface Ingredient {
+  id : number,
+  naam: string
+}
+
+declare interface Recept {
+  id: number,
+  naam: string,
+  opmerkingen: string,
+  kooktijd: number,
+  ingredienten: Ingredient [];
+}
+
 export default {
   name: 'Recept',
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  data() {
-    const result = {
-      recept:
-        {
-          id: 0,
-          naam: 'patat',
-          opmerkingen: 'blah',
-          kooktijd: 10,
-          ingredienten: [
-            { id: 1, naam: 'aap' },
-            { id: 2, naam: 'noot' },
-            { id: 3, naam: 'mies' }],
-        },
-      columns: [
-        {
-          field: 'id',
-          label: 'Id',
-          width: '20',
-          numeric: true,
-        },
-        {
-          field: 'naam',
-          label: 'Naam',
-        },
-      ],
+  data() :Recept {
+    const recept = {
+      id: 0,
+      naam: 'patat',
+      opmerkingen: 'blah',
+      kooktijd: 10,
+      ingredienten: [
+        { id: 1, naam: 'aap' },
+        { id: 2, naam: 'noot' },
+        { id: 3, naam: 'mies' }],
     };
-    return result;
+    return recept;
   },
   methods: {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    getMessage() {
+    getMessage() :Recept {
       return axios
         .get('/randomrecept')
         .then((res) => {
-          this.recept = res.data;
+          this.id = res.data.id;
+          this.naam = res.data.naam;
+          this.opmerkingen = res.data.opmerkingen;
+          this.kooktijd = res.data.kooktijd;
+          this.ingredienten = res.data.ingredienten;
         })
         .catch((error) => {
           document.write(error);
@@ -61,8 +62,8 @@ export default {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 
   },
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  mounted() {
+
+  mounted() :void {
     this.getMessage();
   },
 

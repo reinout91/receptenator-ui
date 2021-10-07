@@ -3,17 +3,19 @@
   <h1>{{ msg }}</h1>
 </div></template>
 
-<script>
+<script lang='ts'>
 import axios from 'axios';
 
+declare interface Messenger {
+  msg: string;
+}
+
 export default {
-  name: 'Titel',
-  data() {
-    const result = { msg: '' };
-    return result;
+  data() :Messenger {
+    return { msg: '' } as Messenger;
   },
   methods: {
-    getMessage() {
+    getMessage(): Promise<void> {
       return axios
         .get('/')
         .then((res) => {
@@ -24,7 +26,7 @@ export default {
         });
     },
   },
-  mounted() {
+  mounted() :void {
     this.getMessage();
   },
 };
